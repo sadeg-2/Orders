@@ -9,7 +9,7 @@ using System.Reflection.Emit;
 
 namespace Orders.API.Data
 {
-    public class OrderDbContext : IdentityDbContext
+    public class OrderDbContext : IdentityDbContext<User>
     {
         public OrderDbContext(DbContextOptions<OrderDbContext> options)
             : base(options)

@@ -16,6 +16,10 @@ namespace Orders.Infrastructure.AutoMapper
             CreateMap<Category, CategoryViewModel>();
             CreateMap<CreateCategoryDto, Category>();
             CreateMap<UpdateCategoryDto, Category>();
+
+            CreateMap<User,UserViewModel>();
+            CreateMap<CreateUserDto, User>();
+            CreateMap<UpdateUserDto, User>();
         }
     }
 }

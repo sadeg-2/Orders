@@ -38,9 +38,21 @@ namespace Orders.API
                     Configuration.GetConnectionString("DefaultConnection")));
             services.AddDatabaseDeveloperPageExceptionFilter();
 
-            services.AddIdentity<User,IdentityRole>(options => options.SignIn.RequireConfirmedAccount = true)
+            services.AddIdentity<User,IdentityRole>(options => {
+                options.SignIn.RequireConfirmedAccount = true;
+                options.Password.RequireNonAlphanumeric = false;
+                options.Password.RequireDigit = false;
+                options.Password.RequireLowercase = false;
+                options.Password.RequireUppercase = false;
+                options.Password.RequiredLength = 5;
+            })
                 .AddEntityFrameworkStores<OrderDbContext>();
-            services.AddControllersWithViews();
+
+            services.AddControllersWithViews()
+                .AddNewtonsoftJson(options =>
+                       options.SerializerSettings.ReferenceLoopHandling = Newtonsoft.Json.ReferenceLoopHandling.Ignore
+            );
+
             services.AddRazorPages();
 
             services.AddSwaggerGen(c =>

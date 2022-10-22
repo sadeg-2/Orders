@@ -24,12 +24,13 @@ namespace Orders.Infrastructure.Services.Categories
 
         public async Task<List<CategoryViewModel>> GetAll(string serachKey)
         {
-            var categories = _db.Categories.Where(x => (x.Name.Contains(serachKey) || string.IsNullOrWhiteSpace(serachKey)&& !x.IsDelete)).Select(x => new CategoryViewModel()
+            var categories = _db.Categories.Where(x => (x.Name.Contains(serachKey) || string.IsNullOrWhiteSpace(serachKey)) && !x.IsDelete).Select(x => new CategoryViewModel()
             {
                 Id = x.Id,
                 Name = x.Name,
                 MealCount = _db.Meals.Count(x => x.CategoryId == x.Id && !x.IsDelete)
             }).ToList();
+
             return categories;
         }
 

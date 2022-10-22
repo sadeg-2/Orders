@@ -18,6 +18,8 @@ namespace Orders.Data.Models
         public DateTime CreatedAt { get; set; }
         public bool IsDelete { get; set; }
 
+        //public string Discriminator { get; set; }
+
         public User()
         {
             CreatedAt = DateTime.Now;

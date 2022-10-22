@@ -8,7 +8,8 @@ namespace Orders.API.Controllers
     [Route("api/[controller]/[action]")]
     public class BaseController : Controller
     {
-        public async Task<APIResponseViewModel> GetAPIResponse(object data) {
+      
+        protected async Task<APIResponseViewModel> GetAPIResponse(object data) {
             return new APIResponseViewModel(true, "done", data);
         }
     }
