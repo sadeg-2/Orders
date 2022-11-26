@@ -68,7 +68,7 @@ namespace Orders.API
             {
                 o.TokenValidationParameters = new TokenValidationParameters
                 {
-                    ValidIssuer = Configuration["Jwt:SecurityKey"],
+                    ValidIssuer = Configuration["Jwt:Issuer"],
                     ValidAudience = Configuration["Jwt:Issuer"],
                     IssuerSigningKey = new SymmetricSecurityKey
                     (Encoding.UTF8.GetBytes(Configuration["Jwt:SecurityKey"])),
@@ -81,7 +81,7 @@ namespace Orders.API
                 };
             });
 
-            services.AddOptions<JwtOptions>(Configuration["Jwt"]);
+            services.Configure<JwtOptions>(Configuration.GetSection("Jwt"));
 
             services.AddRazorPages();
 
