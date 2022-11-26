@@ -3,15 +3,17 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Orders.API.Data;
 
 namespace Order.Data.Migrations
 {
     [DbContext(typeof(OrderDbContext))]
-    partial class OrderDbContextModelSnapshot : ModelSnapshot
+    [Migration("20221126135347_relations")]
+    partial class relations
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -369,8 +371,8 @@ namespace Order.Data.Migrations
                     b.Property<bool>("IsDelete")
                         .HasColumnType("bit");
 
-                    b.Property<double?>("Latitude")
-                        .HasColumnType("float");
+                    b.Property<decimal?>("Latitude")
+                        .HasColumnType("decimal(18,2)");
 
                     b.Property<bool>("LockoutEnabled")
                         .HasColumnType("bit");
@@ -378,8 +380,8 @@ namespace Order.Data.Migrations
                     b.Property<DateTimeOffset?>("LockoutEnd")
                         .HasColumnType("datetimeoffset");
 
-                    b.Property<double?>("Longitude")
-                        .HasColumnType("float");
+                    b.Property<decimal?>("Longitude")
+                        .HasColumnType("decimal(18,2)");
 
                     b.Property<string>("NormalizedEmail")
                         .HasMaxLength(256)
@@ -481,7 +483,7 @@ namespace Order.Data.Migrations
                         .IsRequired();
 
                     b.HasOne("Orders.Data.Models.Resturant", "Resturant")
-                        .WithMany("Meals")
+                        .WithMany()
                         .HasForeignKey("ResturantId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
@@ -500,7 +502,7 @@ namespace Order.Data.Migrations
                         .IsRequired();
 
                     b.HasOne("Orders.Data.Models.Resturant", "Resturant")
-                        .WithMany("Orders")
+                        .WithMany()
                         .HasForeignKey("ResturantId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
@@ -542,13 +544,6 @@ namespace Order.Data.Migrations
             modelBuilder.Entity("Orders.Data.Models.Order", b =>
                 {
                     b.Navigation("OrderItems");
-                });
-
-            modelBuilder.Entity("Orders.Data.Models.Resturant", b =>
-                {
-                    b.Navigation("Meals");
-
-                    b.Navigation("Orders");
                 });
 #pragma warning restore 612, 618
         }

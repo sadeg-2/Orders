@@ -5,11 +5,10 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Orders.Data.Models
+namespace Orders.Core.Dtos
 {
-    public class Resturant : BaseEntity
+    public class CreateResturantDto
     {
-        public int Id { get; set; }
         [Required]
         public string Name { get; set; }
         public string LogoUrl { get; set; }
@@ -18,8 +17,5 @@ namespace Orders.Data.Models
         public decimal? Latitude { get; set; }
         public decimal? Longitude { get; set; }
         public string Address { get; set; }
-
-        public List<Meal> Meals { get; set; }
-        public List<Order> Orders { get; set; }
     }
 }

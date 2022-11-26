@@ -1,5 +1,6 @@
 ﻿using AutoMapper;
 using Orders.Core.Dtos;
+using Orders.Core.ViewModel;
 using Orders.Core.ViewModels;
 using Orders.Data.Models;
 using System;
@@ -20,6 +21,11 @@ namespace Orders.Infrastructure.AutoMapper
             CreateMap<User,UserViewModel>();
             CreateMap<CreateUserDto, User>();
             CreateMap<UpdateUserDto, User>();
+
+            CreateMap<Resturant, ResturantViewModel>();
+            CreateMap<CreateResturantDto, Resturant>();
+
+
         }
     }
 }
